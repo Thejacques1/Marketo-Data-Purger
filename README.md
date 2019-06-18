@@ -8,7 +8,7 @@ This simple .Net Core app uses Dapper to access your Marketo OpportunityRoleId's
 
 ## Prerequisites
 
-* REST API Url, ClientId and Secret for Marketo instance (Follow steps here: [link](https://developers.marketo.com/rest-api/)
+* REST API Url, ClientId and Secret for Marketo instance (Follow steps here: [link](https://developers.marketo.com/rest-api/))
 * Database Connection String
 * Database SQL query toaccess Opportunity and OpportunityRole ID's
 
