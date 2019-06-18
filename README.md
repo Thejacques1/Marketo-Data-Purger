@@ -27,6 +27,11 @@ This simple .Net Core app uses Dapper to access your Marketo OpportunityRoleId's
 The app can be optimized further but my situation didn't require it. 
 It current does chunks/batches of 300 records over 10 concurrent API requests (and sleeps the thread for 21 seconds) to stay within the 10 concurrent API request and 100 API requests per 20 seconds limit of the Marketo API. The purging logic could be optimized further using locking to work right below the limit of 100 API requests per 20 seconds, however, this is only neccesary if you have a large volume of Opportunities and you have time constraints.
 
+### Future work
+
+As this is only used for a once off run I have skipped Unit tests and Dependecy Injection. If I see anyone else use this I would be happy to extend it.
+This app can also be extended to include the removal of Lead records from Marketo.
+
 ### Stats
 
 350 000 odd Opportunities and 350 000 odd OpportunityRoles take roughly 3-5 hours to complete depending on the performance of the Marketo API at the time.
