@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarketoDataPurger.Gateways\MarketoDataPurger.Gateways.csproj" />
+    <ProjectReference Include="..\MarketoDataPurger.Repositories\MarketoDataPurger.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
