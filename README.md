@@ -1,12 +1,14 @@
 # Marketo-Opportunity-Purger
 
+<p align="center">
+  [![CircleCI](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger.svg?style=svg)](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger)
+</p>
+
 Provide the OpportunityRoleId's and OpportunityId's and this app will remove all Opportunities and Opportunity Roles from Marketo via the Marketo API.
 
 The Marketo support and development team provide no means at this stage to delete All Opportunities and Opportunity Roles from a Marketo instance from within the Marketo UI. The solution provided is to re-provisioning the Marketo instance. Doing so would force the customer to lose all custom fields, campaigns and velocity scripts. This is less than ideal.
 
 This simple .Net Core app uses Dapper to access your Marketo OpportunityRoleId's and OpportunityId's stored as provided by Marketo at time of creating Opportunities and associating them with Leads.
-
-[![CircleCI](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger.svg?style=svg)](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger)
 
 ## Prerequisites
 
