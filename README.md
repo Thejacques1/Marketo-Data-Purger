@@ -1,6 +1,6 @@
 # Marketo-Opportunity-Purger
 
-[![CircleCI](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger.svg?style=svg)](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger)
+![CircleCI](https://img.shields.io/circleci/build/github/Thejacques1/Marketo-Opportunity-Purger/develop.svg)
 
 Provide the OpportunityRoleId's and OpportunityId's and this app will remove all Opportunities and Opportunity Roles from Marketo via the Marketo API.
 
