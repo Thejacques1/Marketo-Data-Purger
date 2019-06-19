@@ -26,6 +26,8 @@ This simple .Net Core app uses Dapper to access your Marketo OpportunityRoleId's
 
 ### Disclaimer
 
+This will break your Marketo Daily API limit. Speak to your account manager about breaking the limit temporarily first.
+
 The app can be optimized further but my situation didn't require it. 
 It current does chunks/batches of 300 records over 10 concurrent API requests (and sleeps the thread for 21 seconds) to stay within the 10 concurrent API request and 100 API requests per 20 seconds limit of the Marketo API. The purging logic could be optimized further using locking to work right below the limit of 100 API requests per 20 seconds, however, this is only neccesary if you have a large volume of Opportunities and you have time constraints.
 
