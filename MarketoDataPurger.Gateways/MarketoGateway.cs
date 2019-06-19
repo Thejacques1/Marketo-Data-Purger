@@ -45,8 +45,7 @@ namespace MarketoDataPurger.Gateways
 
             HttpContent httpContent = new StringContent(body);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            Task<HttpResponseMessage> httpResponseMessage = client.PostAsync(path, httpContent);
-            HttpResponseMessage response = httpResponseMessage.Result;
+            HttpResponseMessage response = await client.PostAsync(path, httpContent);
 
             if (response.IsSuccessStatusCode)
             {
@@ -112,8 +111,7 @@ namespace MarketoDataPurger.Gateways
 
             HttpContent httpContent = new StringContent(body);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            Task<HttpResponseMessage> httpResponseMessage = client.PostAsync(path, httpContent);
-            HttpResponseMessage response = httpResponseMessage.Result;
+            HttpResponseMessage response = await client.PostAsync(path, httpContent);
 
             if (response.IsSuccessStatusCode)
             {
