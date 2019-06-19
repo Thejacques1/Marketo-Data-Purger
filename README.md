@@ -1,4 +1,4 @@
-# Marketo-Opportunity-Purger
+# Delete Marketo Opportunities
 
 ![CircleCI](https://img.shields.io/circleci/build/github/Thejacques1/Marketo-Opportunity-Purger/develop.svg)
 
