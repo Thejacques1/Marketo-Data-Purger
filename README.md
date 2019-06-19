@@ -29,7 +29,7 @@ It current does chunks/batches of 300 records over 10 concurrent API requests (a
 
 ### Future work
 
-As this is only used for a once off run I have skipped Unit tests and Dependecy Injection. If I see anyone else use this I would be happy to extend it.
+As this is only used for a once off run I have skipped Unit tests. If I see anyone else use this I would be happy to extend it.
 This app can also be extended to include the removal of Lead records from Marketo.
 
 ### Stats

@@ -6,12 +6,15 @@ using MarketoDataPurger.Repositories;
 using MarketoDataPurger.Services;
 using MarketoDataPurger.Services.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using JsonSettings = MarketoDataPurger.Settings.Settings;
 
 namespace MarketoDataPurger
 {
     class Program
     {
+        private static ServiceProvider _serviceProvider;
+
         static async Task Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
@@ -24,9 +27,9 @@ namespace MarketoDataPurger
             configuration.Bind(mySettingsConfig);
 
             DisplaySettings(mySettingsConfig);
-
+            SetupDependencies(mySettingsConfig);
             await InitiatePurge(mySettingsConfig);
-            
+
             Console.ReadKey();
         }
 
@@ -38,11 +41,18 @@ namespace MarketoDataPurger
             Console.WriteLine("Marketo Secret: " + mySettingsConfig.Marketo.Secret);
         }
 
+        private static void SetupDependencies(JsonSettings mySettingsConfig)
+        {
+            _serviceProvider = new ServiceCollection()
+                .AddSingleton<IDatabaseRepository>(dbr => new DatabaseRepository(mySettingsConfig.DatabaseConnectionString))
+                .AddSingleton<IMarketoGateway>(mkg => new MarketoGateway(mySettingsConfig.Marketo.InstanceUrl, mySettingsConfig.Marketo.ClientId, mySettingsConfig.Marketo.Secret))
+                .AddSingleton<IMarketoPurgingService, MarketoPurgingService>()
+                .BuildServiceProvider();
+        }
+
         private static async Task InitiatePurge(JsonSettings mySettingsConfig)
         {
-            IDatabaseRepository databaseRepository = new DatabaseRepository(mySettingsConfig.DatabaseConnectionString);
-            IMarketoGateway marketoGateway = new MarketoGateway(mySettingsConfig.Marketo.InstanceUrl, mySettingsConfig.Marketo.ClientId, mySettingsConfig.Marketo.Secret);
-            IMarketoPurgingService marketoPurgingService = new MarketoPurgingService(databaseRepository, marketoGateway);
+            IMarketoPurgingService marketoPurgingService = _serviceProvider.GetService<IMarketoPurgingService>();
 
             bool marketoTestResult = false;
 
