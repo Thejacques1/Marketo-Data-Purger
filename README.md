@@ -6,6 +6,8 @@ The Marketo support and development team provide no means at this stage to delet
 
 This simple .Net Core app uses Dapper to access your Marketo OpportunityRoleId's and OpportunityId's stored as provided by Marketo at time of creating Opportunities and associating them with Leads.
 
+[![CircleCI](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger.svg?style=svg)](https://circleci.com/gh/Thejacques1/Marketo-Opportunity-Purger)
+
 ## Prerequisites
 
 * REST API Url, ClientId and Secret for Marketo instance (Follow steps here: [link](https://developers.marketo.com/rest-api/))
