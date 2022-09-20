@@ -45,6 +45,7 @@ namespace MarketoDataPurger
         {
             _serviceProvider = new ServiceCollection()
                 .AddSingleton<IDatabaseRepository>(dbr => new DatabaseRepository(mySettingsConfig.DatabaseConnectionString))
+                .AddSingleton<IFileRepository>(dbr => new FileRepository())
                 .AddSingleton<IMarketoGateway>(mkg => new MarketoGateway(mySettingsConfig.Marketo.InstanceUrl, mySettingsConfig.Marketo.ClientId, mySettingsConfig.Marketo.Secret))
                 .AddSingleton<IMarketoPurgingService, MarketoPurgingService>()
                 .BuildServiceProvider();
@@ -86,15 +87,35 @@ namespace MarketoDataPurger
 
                 if (databaseTestResult)
                 {
-                    Console.WriteLine(
-                        "Would you like to proceed to delete all Opportunities and OpportunityRoles? Y/N");
-                    string purgeQuestionAnswer = Console.ReadLine();
-                    if (purgeQuestionAnswer.Equals("Y", StringComparison.InvariantCultureIgnoreCase) || purgeQuestionAnswer.Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        await marketoPurgingService.Purge();
+                    //Console.WriteLine(
+                    //    "Would you like to proceed to delete all Opportunities and OpportunityRoles? Y/N");
+                    //string purgeQuestionAnswer = Console.ReadLine();
+                    //if (purgeQuestionAnswer.Equals("Y", StringComparison.InvariantCultureIgnoreCase) || purgeQuestionAnswer.Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
+                    //{
+                    //    await marketoPurgingService.Purge();
 
-                        Console.WriteLine("Purge has been completed.");
-                    }
+                    //    Console.WriteLine("Purge has been completed.");
+                    //}
+
+                    Console.WriteLine(
+                    "Would you like to proceed to de-duplicate leads? Y/N");
+                string dedupLeadsQuestionAnswer = Console.ReadLine();
+                if (dedupLeadsQuestionAnswer.Equals("Y", StringComparison.InvariantCultureIgnoreCase) || dedupLeadsQuestionAnswer.Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    await marketoPurgingService.DeduplicateLeads();
+
+                    Console.WriteLine("Lead de-duplication has been completed.");
+                }
+
+                    //  Console.WriteLine(
+                    //"Would you like to proceed to find stale leads? Y/N");
+                    //  string staleLeadsQuestionAnswer = Console.ReadLine();
+                    //  if (staleLeadsQuestionAnswer.Equals("Y", StringComparison.InvariantCultureIgnoreCase) || staleLeadsQuestionAnswer.Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
+                    //  {
+                    //      await marketoPurgingService.FindStaleLeads();
+
+                    //      Console.WriteLine("Find stale leads has been completed.");
+                    //  }
                 }
             }
         }

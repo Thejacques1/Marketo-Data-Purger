@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -26,34 +27,57 @@ namespace MarketoDataPurger.Repositories
 
         public async Task<IEnumerable<MarketoOpportunity>> GetMarketoOpportunities()
         {
-            List<MarketoOpportunity> marketoOpportunities;
+            //List<MarketoOpportunity> marketoOpportunities;
+
+            //using (IDbConnection con = Connection)
+            //{
+            //    con.Open();
+
+            //    string sqlQuery = "SELECT [MarketoOpportunityId], [MarketoOpportunityRoleId] FROM [schema].[Table] (nolock)";
+
+            //    var result = await con.QueryAsync<MarketoOpportunity>(sqlQuery);
+            //    marketoOpportunities = result.ToList();
+            //}
+
+            //return marketoOpportunities;
+
+            ////Examples for testing:
+            //MarketoOpportunity testMarketoOpportunity = new MarketoOpportunity()
+            //{
+            //    MarketoOpportunityId = new Guid("CC3D965E-4A58-4C99-B9EE-582643CF1EE0"),
+            //    MarketoOpportunityRoleId = new Guid("97DF8D0B-AEFC-4555-A394-F105832F1AB9")
+            //};
+
+            //MarketoOpportunity testMarketoOpportunity2 = new MarketoOpportunity()
+            //{
+            //    MarketoOpportunityId = new Guid("03B3FB42-CB15-4990-AE48-E957B27C866A"),
+            //    MarketoOpportunityRoleId = new Guid("0E30A432-DFCB-4C93-AF4B-3B957D330ED2")
+            //};
+
+            //return new List<MarketoOpportunity>() { testMarketoOpportunity, testMarketoOpportunity2 };
+            return new List<MarketoOpportunity>() { };
+        }
+
+        public async Task<bool> CustomerExistsForMarketoLeadId(int marketoLeadId)
+        {
+            List<ScvDBCustomer> scvCustomers;
 
             using (IDbConnection con = Connection)
             {
                 con.Open();
 
-                string sqlQuery = "SELECT [MarketoOpportunityId], [MarketoOpportunityRoleId] FROM [schema].[Table] (nolock)";
+                string sqlQuery = $"SELECT [MarketoLeadId] FROM [AUS-PROD-DB-MI-SQLDB].[mkt].[MarketoLeadSCVCustomerMap] WITH (nolock) Where[MarketoLeadId] = {marketoLeadId}";
 
-                var result = await con.QueryAsync<MarketoOpportunity>(sqlQuery);
-                marketoOpportunities = result.ToList();
+                var result = await con.QueryAsync<ScvDBCustomer>(sqlQuery);
+                scvCustomers = result.ToList();
             }
 
-            return marketoOpportunities;
+            if (scvCustomers.Any())
+            {
+                return true;
+            }
 
-            ////Examples for testing:
-            //MarketoOpportunity testMarketoOpportunity = new MarketoOpportunity()
-            //{
-            //    MarketoOpportunityId = new Guid("6EDF6399-0D7B-4CCF-8A9B-4AFC1DB559E9"),
-            //    MarketoOpportunityRoleId = new Guid("4ED96573-B8D4-4234-AD88-7AE34013809E")
-            //};
-
-            //MarketoOpportunity testMarketoOpportunity2 = new MarketoOpportunity()
-            //{
-            //    MarketoOpportunityId = new Guid("E96DEAC5-4A4E-4B92-8480-1E76AA45A336"),
-            //    MarketoOpportunityRoleId = new Guid("D27F0046-D681-4D11-A09F-8CA5BAD741B8")
-            //};
-
-            //return new List<MarketoOpportunity>() { testMarketoOpportunity, testMarketoOpportunity2 };
+            return false;
         }
     }
 }

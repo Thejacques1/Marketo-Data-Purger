@@ -7,6 +7,9 @@ namespace MarketoDataPurger.Services
     {
         Task Purge();
 
+        Task DeduplicateLeads();
+        Task FindStaleLeads();
+
         bool TestMarketoConnection();
 
         Task<DatabaseTestDto> TestDatabaseConnection();

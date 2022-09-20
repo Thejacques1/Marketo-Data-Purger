@@ -9,6 +9,9 @@ namespace MarketoDataPurger.Gateways
 
         Task<DeleteOpportunityResponse> DeleteOpportunityRole(DeleteOpportunityRequest deleteOpportunityRequest);
 
+        Task<MergeLeadsResponse> MergeLeads(int winningLead, int duplicateLead);
+        Task<FindLeadResponse> FindLead(int marketoLeadId);
+
         string GetToken();
     }
 }

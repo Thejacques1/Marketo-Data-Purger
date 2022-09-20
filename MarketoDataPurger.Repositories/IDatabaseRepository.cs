@@ -7,5 +7,7 @@ namespace MarketoDataPurger.Repositories
     public interface IDatabaseRepository
     {
         Task<IEnumerable<MarketoOpportunity>> GetMarketoOpportunities();
+
+        Task<bool> CustomerExistsForMarketoLeadId(int marketoLeadId);
     }
 }
