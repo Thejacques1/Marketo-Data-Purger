@@ -22,7 +22,7 @@ This simple .Net Core app uses Dapper to access your Marketo OpportunityRoleId's
 
 ### Built With
 
-* [.Net core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1) - The developer platform
+* [.Net 6.0 ](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) - The developer platform
 * [Dapper](https://github.com/StackExchange/Dapper) - Database ORM
 
 ### Disclaimer
