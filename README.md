@@ -1,8 +1,9 @@
-# Delete Marketo Opportunities
+# Delete or Merge Marketo Data
 
 ![CircleCI](https://img.shields.io/circleci/build/github/Thejacques1/Marketo-Opportunity-Purger/develop.svg)
 
 Provide the OpportunityRoleId's and OpportunityId's and this app will remove all Opportunities and Opportunity Roles from Marketo via the Marketo API.
+Provide it with a list of duplicate Markeot Lead records (exported from Marketo's default 'Possible Duplicates' System List) and it will retrieve the relevant correct Marketo Lead ID to keep and merge as the winning record.
 
 The Marketo support and development team provide no means at this stage to delete All Opportunities and Opportunity Roles from a Marketo instance from within the Marketo UI. The solution provided is to re-provisioning the Marketo instance. Doing so would force the customer to lose all custom fields, campaigns and velocity scripts. This is less than ideal.
 
